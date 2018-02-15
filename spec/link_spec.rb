@@ -5,8 +5,11 @@ describe Link do
   subject(:link) { described_class.new }
   describe "::all" do
     it "returns a list of all links" do
-      expect(described_class.all).to include ["http://google.com"]
-      expect(described_class.all).to include ["http://facebook.com"]
+      links = Link.all
+      p links
+      urls = links.map(&:url)
+      expect(urls).to include("http://www.google.com")
+      expect(urls).to include("http://www.facebook.com")
     end
   end
 

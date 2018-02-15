@@ -11,14 +11,8 @@ class Link
 
   def self.all
     query = DatabaseConnection.query('SELECT url FROM links') # assign to variable
-    query.each_row do |row|
-      p row
-      id = row.column_values(0).pop
-      # p id
-      url = row.column_values(1).pop
-      # p url
-      @@list << Link.new(id,url) # need @@list, and initialize method with 2 args
-      # p @@list
+    query.map do |row|
+      Link.new(row["url"])
     end
   end
 
@@ -33,8 +27,7 @@ class Link
 
   attr_reader :id, :url
 
-  def initialize(id,url)
-    @id = id
+  def initialize(url)
     @url = url
   end
 end

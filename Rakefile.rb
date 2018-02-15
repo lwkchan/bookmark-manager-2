@@ -13,6 +13,6 @@ end
 task :test do
   DatabaseConnection.setup('bookmark_manager_test')
   DatabaseConnection.query("TRUNCATE links;
-  INSERT INTO links (url) VALUES ('http://facebook.com');
-  INSERT INTO links (url) VALUES ('http://google.com');")
+  INSERT INTO links (url) VALUES ('http://www.facebook.com');
+  INSERT INTO links (url) VALUES ('http://www.google.com');")
 end
