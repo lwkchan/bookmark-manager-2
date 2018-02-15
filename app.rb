@@ -18,8 +18,7 @@ class BookmarkManager < Sinatra::Base
 
   post '/add_link' do
     @new_link = params[:new_link]
-    uri = URI.parse(@new_link)
-    if uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)
+    if Link.valid?(@new_link)
       Link.add_link(@new_link)
       redirect '/'
     else
