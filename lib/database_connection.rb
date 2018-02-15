@@ -7,7 +7,7 @@ class DatabaseConnection
 
   def self.query(query_string) # returns a PG::Result
     result = @database.exec(query_string)
-    result.values
+    # result.values
   end
 end
 
