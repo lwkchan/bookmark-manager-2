@@ -12,7 +12,7 @@ class Link
   def self.all
     query = DatabaseConnection.query('SELECT url FROM links') # assign to variable
     query.map do |row|
-      Link.new(row["url"])
+      Link.new(row["id"],row["url"])
     end
   end
 
@@ -25,9 +25,10 @@ class Link
     uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
   end
 
-  attr_reader :id, :url
+  attr_reader :id, :url, :title
 
-  def initialize(url)
+  def initialize(id, url)
+    @id = id
     @url = url
   end
 end
