@@ -2,7 +2,6 @@ require 'link'
 
 describe Link do
 
-  subject(:link) { described_class.new(1, 'http://www.google.com', 'Google') }
   describe "::all" do
     it "returns a list of all links" do
       links = Link.all
@@ -33,6 +32,19 @@ describe Link do
     end
 
   end
+
+  describe "::delete" do
+    it "deletes the bookmark by 'id'" do
+      links = described_class.all
+      fb_id = links.map(&:id).first
+      described_class.delete(fb_id)
+      links = described_class.all # refreshed link objects array
+      remaining_ids = links.map(&:id)
+      expect(remaining_ids).not_to include fb_id
+    end
+  end
+
+  subject(:link) { described_class.new(1, 'http://www.google.com', 'Google') }
 
   describe '#url' do
     it 'holds a url as an attribute' do

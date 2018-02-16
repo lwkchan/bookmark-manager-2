@@ -4,23 +4,19 @@
     <meta charset="utf-8">
     <title>Links</title>
   </head>
-
-
-
   <body>
     <ul>
       <% @links.each do |link| %>
-      <li>
+      <li class="<%= link.title.downcase %>" >
         <a target="_blank" href="<%= link.url %>">
           <%= link.title %>
         </a>
+        <form  action="/delete_link" method="post">
+          <button name="link_id" value="<%= link.id %>">Delete</button>
+        </form>
       </li>
       <% end %>
     </ul>
-
-
-
-
   <form action="/add_link" method="post">
     <input type="text" name="new_link">
     <input type="text" name="title">

@@ -19,6 +19,10 @@ class Link
     uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
   end
 
+  def self.delete(link_id)
+    DatabaseConnection.query("DELETE FROM links WHERE id = '#{link_id}'")
+  end
+
   attr_reader :id, :url, :title
 
   def initialize(id, url, title)
