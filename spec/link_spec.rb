@@ -14,15 +14,24 @@ describe Link do
 
   describe "::add_link" do
     it "adds a link to database" do
-      described_class.add_link('http://www.runningoutofwebsites.com')
+      described_class.add_link('http://www.runningoutofwebsites.com', 'Runningoutofwebsites')
       links = described_class.all
       urls = links.map(&:url)
       expect(urls).to include "http://www.runningoutofwebsites.com"
     end
+
+    it "stored title in database" do
+      described_class.add_link('http://www.runningoutofwebsites.com', 'Runningoutofwebsites')
+      links = described_class.all
+      titles = links.map(&:title)
+      expect(titles).to include "Runningoutofwebsites"
+    end
+
     it "does not add an invalid link" do
-      described_class.add_link('www.frog')
+      described_class.add_link('www.frog', 'Frog')
       expect(described_class.all).not_to include "www.frog"
     end
+
   end
 
   describe '#url' do

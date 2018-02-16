@@ -18,8 +18,9 @@ class BookmarkManager < Sinatra::Base
 
   post '/add_link' do
     @new_link = params[:new_link]
+    @title = params[:title]
     if Link.valid?(@new_link)
-      Link.add_link(@new_link)
+      Link.add_link(@new_link, @title)
       redirect '/'
     else
       flash.now[:error] = 'Error - that is not a link.'

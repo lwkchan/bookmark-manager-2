@@ -10,8 +10,8 @@ class Link
     end
   end
 
-  def self.add_link(link)
-    DatabaseConnection.query("INSERT INTO links (url) VALUES ('#{link}');") if valid?(link)
+  def self.add_link(link, title)
+    DatabaseConnection.query("INSERT INTO links (url, title) VALUES ('#{link}', '#{title}');") if valid?(link)
   end
 
   def self.valid?(link)
