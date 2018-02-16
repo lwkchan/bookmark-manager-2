@@ -12,7 +12,7 @@ class BookmarkManager < Sinatra::Base
   DatabaseConnection.setup('bookmark_manager')
 
   get '/' do
-    @links = Link.all.map(&:url)
+    @links = Link.all
     erb(:index)
   end
 

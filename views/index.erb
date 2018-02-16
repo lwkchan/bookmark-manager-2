@@ -4,11 +4,26 @@
     <meta charset="utf-8">
     <title>Links</title>
   </head>
+
+
+
   <body>
-    <h1><%= @links %></h1>
-  </body>
+    <ul>
+      <% @links.each do |link| %>
+      <li>
+        <a target="_blank" href="<%= link.url %>">
+          <%= link.title %>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+
+
+
+
   <form action="/add_link" method="post">
     <input type="text" name="new_link" value="">
     <input type="submit" value="Add Bookmark">
   </form>
+  </body>
 </html>

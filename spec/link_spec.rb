@@ -2,7 +2,7 @@ require 'link'
 
 describe Link do
 
-  subject(:link) { described_class.new(1,'http://www.google.com') }
+  subject(:link) { described_class.new(1, 'http://www.google.com', 'Google') }
   describe "::all" do
     it "returns a list of all links" do
       links = Link.all
@@ -30,4 +30,17 @@ describe Link do
       expect(link.url).to eq 'http://www.google.com'
     end
   end
+
+  describe '#id' do
+    it 'holds an id as an attribute' do
+      expect(link.id.to_i).to be_kind_of Integer
+    end
+  end
+
+  describe '#title' do
+    it 'holds a title as an attribute' do
+      expect(link.title).to eq 'Google'
+    end
+  end
+
 end
